@@ -20,7 +20,7 @@
 	</bean>
  	
 	<!-- Scans for application @Components to deploy -->
-	<context:component-scan base-package="br.eti.ftxavier.base.service" />
-	<context:component-scan base-package="br.eti.ftxavier.base.dao" />
+	<context:component-scan base-package="br.eti.ftxavier.timesheet.service" />
+	<context:component-scan base-package="br.eti.ftxavier.timesheet.dao" />
 	
 </beans>

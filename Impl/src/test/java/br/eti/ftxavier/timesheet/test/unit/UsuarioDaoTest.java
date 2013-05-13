@@ -1,47 +1,40 @@
-package org.gradle.example.simple.test.integration;
+package br.eti.ftxavier.timesheet.test.unit;
 
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.util.Assert.notEmpty;
 
 import java.util.List;
 
-import org.gradle.example.simple.test.util.TestUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
-import br.eti.ftxavier.base.model.Usuario;
-import br.eti.ftxavier.base.service.UsuarioService;
+import br.eti.ftxavier.timesheet.dao.UsuarioDao;
+import br.eti.ftxavier.timesheet.model.Usuario;
+import br.eti.ftxavier.timesheet.test.util.TestUtil;
 
+@Transactional
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( locations = { "classpath*:beans/application-context-test.xml", "classpath*:beans/data-context-test.xml" } )
-public class UsuarioServiceTest {
+public class UsuarioDaoTest {
 	
 	@Autowired
-	private UsuarioService usuarioService;
-		
+	private UsuarioDao usuarioDao;
+	
 	@Test
 	public void save() {
 		Usuario usuario = TestUtil.getUsuario("usuariosave");
-		usuarioService.save(usuario);
+		usuarioDao.save(usuario);
 		assertNotNull(usuario.getId());
 	}
 	
 	@Test
 	public void list() {
 		save();
-		List<Usuario> lista = usuarioService.list();
+		List<Usuario> lista = usuarioDao.findAll();
 		notEmpty(lista);
 	}
-	
-	@Test
-	public void findByLogin() {
-		Usuario usuario = TestUtil.getUsuario("ftxavier");
-		usuarioService.save(usuario);
-		Usuario usuarioSalvo = usuarioService.getUsuarioByLogin("ftxavier");
-		assertNotNull(usuarioSalvo);
-	}
-
 }

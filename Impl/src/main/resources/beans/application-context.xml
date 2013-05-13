@@ -13,10 +13,17 @@
  	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
+				<value>file:${TIMESHET_HOME}/Config/config.properties</value>
+				<value>file:#{systemProperties['TIMESHET_HOME']}/Config/config.properties</value>
 				<value>classpath:config.properties</value>
 			</list>
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<property name="searchSystemEnvironment" value="true" />
+		<property name="searchContextAttributes" value="true" />
+		<property name="contextOverride" value="true" />
+		<property name="ignoreResourceNotFound" value="true" />
 	</bean>
  		
 </beans>

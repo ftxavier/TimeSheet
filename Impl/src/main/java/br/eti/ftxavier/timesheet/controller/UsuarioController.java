@@ -1,4 +1,4 @@
-package br.eti.ftxavier.base.controller;
+package br.eti.ftxavier.timesheet.controller;
 
 import java.util.List;
 
@@ -9,18 +9,16 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
-import br.eti.ftxavier.base.model.Role;
-import br.eti.ftxavier.base.model.Usuario;
-import br.eti.ftxavier.base.service.RoleService;
-import br.eti.ftxavier.base.service.UsuarioService;
-import br.eti.ftxavier.base.util.UserSession;
+import br.eti.ftxavier.timesheet.model.Role;
+import br.eti.ftxavier.timesheet.model.Usuario;
+import br.eti.ftxavier.timesheet.service.RoleService;
+import br.eti.ftxavier.timesheet.service.UsuarioService;
 
 @Resource
 @Path("/usuario/")
 public class UsuarioController {
 	
 	private Result result;
-	private UserSession userSession;
 	
 	@Autowired
 	private UsuarioService usuarioService;
@@ -29,9 +27,8 @@ public class UsuarioController {
 	private RoleService roleService;
 	
 	
-	public UsuarioController(Result result, UserSession userSession) {
+	public UsuarioController(Result result) {
 		this.result = result;
-		this.userSession = userSession;
 	}
 
 	@Get @Path("/")

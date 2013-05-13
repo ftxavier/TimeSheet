@@ -1,4 +1,4 @@
-package br.eti.ftxavier.base.service;
+package br.eti.ftxavier.timesheet.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.eti.ftxavier.base.model.Role;
-import br.eti.ftxavier.base.model.Usuario;
+import br.eti.ftxavier.timesheet.model.Role;
+import br.eti.ftxavier.timesheet.model.Usuario;
 
 @Service(value = "customUserDetailsService")
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)

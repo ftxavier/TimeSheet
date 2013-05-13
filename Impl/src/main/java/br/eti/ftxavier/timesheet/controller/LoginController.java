@@ -1,4 +1,4 @@
-package br.eti.ftxavier.base.controller;
+package br.eti.ftxavier.timesheet.controller;
 
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;

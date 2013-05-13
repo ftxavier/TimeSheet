@@ -1,4 +1,4 @@
-package br.eti.ftxavier.base.dao;
+package br.eti.ftxavier.timesheet.dao;
 
 import java.io.Serializable;
 import java.util.List;

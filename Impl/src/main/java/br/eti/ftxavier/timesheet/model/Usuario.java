@@ -1,4 +1,4 @@
-package br.eti.ftxavier.base.model;
+package br.eti.ftxavier.timesheet.model;
 
 import java.io.Serializable;
 import java.util.Calendar;

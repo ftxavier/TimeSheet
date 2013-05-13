@@ -1,10 +1,10 @@
-package br.eti.ftxavier.base.dao;
+package br.eti.ftxavier.timesheet.dao;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import br.eti.ftxavier.base.model.Usuario;
+import br.eti.ftxavier.timesheet.model.Usuario;
 
 @Repository
 public class UsuarioDao extends AbstractDao<Usuario, Long> {

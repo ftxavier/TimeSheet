@@ -1,4 +1,4 @@
-package br.eti.ftxavier.base.util;
+package br.eti.ftxavier.timesheet.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.User;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.SessionScoped;
-import br.eti.ftxavier.base.model.Usuario;
-import br.eti.ftxavier.base.service.UsuarioService;
+import br.eti.ftxavier.timesheet.model.Usuario;
+import br.eti.ftxavier.timesheet.service.UsuarioService;
 
 @Component
 @SessionScoped

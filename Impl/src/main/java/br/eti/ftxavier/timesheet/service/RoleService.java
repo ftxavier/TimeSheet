@@ -1,4 +1,4 @@
-package br.eti.ftxavier.base.service;
+package br.eti.ftxavier.timesheet.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.eti.ftxavier.base.dao.RoleDao;
-import br.eti.ftxavier.base.model.Role;
+import br.eti.ftxavier.timesheet.dao.RoleDao;
+import br.eti.ftxavier.timesheet.model.Role;
 
 @Service
 public class RoleService {

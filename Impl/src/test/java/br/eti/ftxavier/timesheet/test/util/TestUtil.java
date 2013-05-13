@@ -1,6 +1,6 @@
-package org.gradle.example.simple.test.util;
+package br.eti.ftxavier.timesheet.test.util;
 
-import br.eti.ftxavier.base.model.Usuario;
+import br.eti.ftxavier.timesheet.model.Usuario;
 
 public class TestUtil {
 
