@@ -67,5 +67,5 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<import resource="beans/security-context.xml" />
+	<import resource="security-context.xml" />
 </beans>
