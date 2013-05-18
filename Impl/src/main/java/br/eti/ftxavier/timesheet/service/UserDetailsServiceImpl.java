@@ -18,7 +18,6 @@ import br.eti.ftxavier.timesheet.model.Role;
 import br.eti.ftxavier.timesheet.model.Usuario;
 
 @Service(value = "customUserDetailsService")
-@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
@@ -42,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			}
 			
 			UserDetails userDetails = new User(usuario.getLogin(),
-					usuario.getSenha(), usuario.isEnabled(),
+					usuario.getPassword(), usuario.isEnabled(),
 					usuario.isAccountNonExpired(),
 					usuario.isCredentialsNonExpired(),
 					usuario.isAccountNonLocked(), roleList);

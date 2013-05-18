@@ -7,8 +7,8 @@ public class TestUtil {
 	public static Usuario getUsuario(String login) {
 		Usuario usuario = new Usuario();
 		usuario.setLogin(login);
-		usuario.setNome("Nome");
-		usuario.setSenha("senha");
+		usuario.setName("Nome");
+		usuario.setPassword("senha");
 		return usuario;
 	}
 }

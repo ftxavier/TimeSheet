@@ -5,5 +5,6 @@
 	<session-factory>
 		<mapping class="br.eti.ftxavier.timesheet.model.Usuario" />
 		<mapping class="br.eti.ftxavier.timesheet.model.Role" />
+		<mapping class="br.eti.ftxavier.timesheet.model.Registro" />
 	</session-factory>
 </hibernate-configuration>

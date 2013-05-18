@@ -17,9 +17,9 @@
 		<property name="ignoreResourceNotFound" value="true" />
 		<property name="locations">
 			<list>
-				<value>file:${TIMESHEET_HOME}/Config/config.properties</value>
-				<value>file:#{systemProperties['TIMESHET_HOME']}/Config/config.properties</value>
 				<value>classpath:config.properties</value>
+				<value>file:#{systemProperties['TIMESHEET_HOME']}/Config/config.properties</value>
+				<value>file:${TIMESHEET_HOME}/Config/config.properties</value>
 			</list>
 		</property>
 	</bean>

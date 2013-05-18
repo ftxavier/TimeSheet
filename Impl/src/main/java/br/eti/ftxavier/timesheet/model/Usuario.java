@@ -25,8 +25,8 @@ public class Usuario implements Serializable {
 	
 	@Column(unique=true)
 	private String login;
-	private String senha;
-	private String nome;
+	private String password;
+	private String name;
 	private String email;
 	
 	@Column(name="account_expiration_date")
@@ -60,23 +60,20 @@ public class Usuario implements Serializable {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -143,7 +140,7 @@ public class Usuario implements Serializable {
 		stringBuilder
 			.append("ID...............:").append(this.getId()).append("\n")
 			.append("Login............:").append(this.getLogin()).append("\n")
-			.append("Nome.............:").append(this.getNome()).append("\n")
+			.append("Nome.............:").append(this.getName()).append("\n")
 			.append("Expiração Conta..:").append(this.getAccountExpiration()).append("\n")
 			.append("Expiração Senha..:").append(this.getPasswordExpiration()).append("\n")
 			.append("Conta Bloquqada..:").append(this.isAccountLocked()).append("\n")

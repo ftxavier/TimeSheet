@@ -18,6 +18,6 @@ public class HomeController {
 	@Get
 	@Path("/")
 	public String index() {
-		return "Hello " + userSession.getUsuario().getNome();
+		return "Hello " + userSession.getUsuario().getName();
 	}
 }

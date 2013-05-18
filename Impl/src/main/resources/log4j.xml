@@ -6,6 +6,12 @@
 			<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} %5p [%-20c{1}] %m%n" />
 		</layout>
 	</appender>
+	
+	<category name="org.hibernate">
+		<level value="debug"/>
+		<appender-ref ref="stdout" />
+	</category>
+	
 	<root>
 		<priority value="info" />
 		<appender-ref ref="stdout" />
