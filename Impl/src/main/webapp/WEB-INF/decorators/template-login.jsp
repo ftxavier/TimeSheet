@@ -18,29 +18,8 @@
 		<decorator:head />
 	</head>
 	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top">
-	      <div class="navbar-inner">
-	        <div class="container">
-	          <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	          <a href="#" class="brand">TimeSheet</a>
-	          <div class="nav-collapse collapse">
-	          	<sec:authorize access="isAuthenticated()">
-		            <ul class="nav">
-		              <li class="active"><a href="<c:url value="/" />">Home</a></li>
-		              <li><a href="<c:url value="/usuario/" />">Usuários</a></li>
-		              <li><a href="<c:url value="/logout" />">Logout</a></li>
-		            </ul>
-	            </sec:authorize>
-	          </div><!--/.nav-collapse -->
-	        </div>
-	      </div>
-	    </div>
-    	<decorator:body />
-    	<script src="http://code.jquery.com/jquery.js" type="text/javascript"></script>
+		<decorator:body />
+       	<script src="http://code.jquery.com/jquery.js" type="text/javascript"></script>
     	<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js/" />" type="text/javascript"></script>
 	</body>
 </html>

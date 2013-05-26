@@ -10,7 +10,7 @@
 	    </tr>
 	    <tr>
 	    	<td>Nome</td>
-	    	<td><input type="text" name="usuario.nome" value="${usuario.nome}"/></td>
+	    	<td><input type="text" name="usuario.nome" value="${usuario.name}"/></td>
 	    </tr>
 	    <tr>
 	    	<td>Roles</td>
