@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Adicionar Usu&aacute;rio</title>
+<title>Adicionar Registro</title>
 </head>
 <body>
 	<div class="container">
-		<form action="<c:url value="/usuario/save"/>" method="post">
+		<form action="<c:url value="/registro/add"/>" method="post">
 			<fieldset>
-				<legend>Adicionar Usu&aacute;rio</legend>
+				<legend>Adicionar Registro</legend>
 				<jsp:include page="form.jsp" />
 			</fieldset>
 		</form>

@@ -15,6 +15,7 @@
 	    <meta name="author" content="">
 	    <link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
 	    <link href="<c:url value="/resources/bootstrap/css/bootstrap-responsive.css" />" rel="stylesheet">
+	    <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 		<decorator:head />
 	</head>
 	<body>
@@ -32,6 +33,7 @@
 		            <ul class="nav">
 		              <li class="active"><a href="<c:url value="/" />">Home</a></li>
 		              <li><a href="<c:url value="/usuario/" />">Usuários</a></li>
+		              <li><a href="<c:url value="/registro/" />">Registros</a></li>
 		              <li><a href="<c:url value="/logout" />">Logout</a></li>
 		            </ul>
 	            </sec:authorize>
@@ -40,7 +42,9 @@
 	      </div>
 	    </div>
     	<decorator:body />
-    	<script src="http://code.jquery.com/jquery.js" type="text/javascript"></script>
-    	<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js/" />" type="text/javascript"></script>
+    	<script src="<c:url value="/resources/js/jquery-1.10.0.min.js" />" type="text/javascript"></script>
+    	<script src="<c:url value="/resources/js/jquery.maskedinput.min.js" />" type="text/javascript"></script>
+    	<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />" type="text/javascript"></script>
+    	<script src="<c:url value="/resources/js/main.js" />" type="text/javascript"></script>
 	</body>
 </html>

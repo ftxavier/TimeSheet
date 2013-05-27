@@ -1,5 +1,6 @@
 package br.eti.ftxavier.timesheet.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,10 @@ import br.eti.ftxavier.timesheet.dao.UsuarioDao;
 import br.eti.ftxavier.timesheet.model.Usuario;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements Serializable {
 	
+	private static final long serialVersionUID = 538212234061034309L;
+
 	@Autowired
 	private UsuarioDao usuarioDao;
 	
