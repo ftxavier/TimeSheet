@@ -1,5 +1,7 @@
 package br.eti.ftxavier.timesheet.test.util;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,10 +24,14 @@ public class TestUtil {
 		usuario.setPassword("senha");
 		return usuario;
 	}
-
+	
 	public Registro getRegistro(TipoRegistro tipoRegistro, Usuario usuario) {
+		return getRegistro(CalendarUtil.getInstance("01/01/2013", "09:00:00"), tipoRegistro, usuario);
+	}
+	
+	public Registro getRegistro(Calendar dataHora, TipoRegistro tipoRegistro, Usuario usuario) {
 		Registro registro = new Registro();
-		registro.setDataHora(CalendarUtil.getInstance("01/01/2013", "09:00:00"));
+		registro.setDataHora(dataHora);
 		registro.setTipoRegistro(tipoRegistro);
 		if(usuario==null)
 			registro.setUsuario(getPersistedUsuario("ftxavier"));

@@ -33,21 +33,21 @@ public class RegistroDaoTest {
 	
 	@Before
 	public void prepare() {
-		registroDao.save(testUtil.getRegistro(TipoRegistro.ENTRADA, testUtil.getPersistedUsuario("ftxavier")));
+		registroDao.save(testUtil.getRegistro(CalendarUtil.getInstance("01/01/2013", "09:00:00"), TipoRegistro.ENTRADA, testUtil.getPersistedUsuario("ftxavier")));
+		registroDao.save(testUtil.getRegistro(CalendarUtil.getInstance("01/01/2013", "12:00:00"), TipoRegistro.SAIDA, testUtil.getPersistedUsuario("ftxavier")));
 	}
 	
 	@Test
 	public void test_get_last_registro() {
 		Registro ultimo = registroDao.getLastRegistro(testUtil.getPersistedUsuario("ftxavier"));
 		assertNotNull(ultimo);
-		assertEquals("01/01/2013 09:00:00", CalendarUtil.toString(ultimo.getDataHora()));
+		assertEquals("01/01/2013 12:00:00", CalendarUtil.toString(ultimo.getDataHora()));
 	}
 	
 	@Test
 	public void test_get_registros_usuario_between_dates() {
 		Calendar firstDay = CalendarUtil.getFirstDayOfMonth(CalendarUtil.getInstance("01/01/2013"));
 		Calendar lastDay = CalendarUtil.getLastDayOfMonth(CalendarUtil.getInstance("01/01/2013"));
-		registroDao.save(testUtil.getRegistro(TipoRegistro.SAIDA, testUtil.getPersistedUsuario("ftxavier")));
 		List<Registro> lista = registroDao.getRegistrosBetweenDates(firstDay, lastDay, testUtil.getPersistedUsuario("ftxavier"));
 		assertNotNull(lista);
 		assertEquals(2, lista.size());
