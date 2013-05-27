@@ -24,9 +24,12 @@ public class UsuarioDaoTest {
 	@Autowired
 	private UsuarioDao usuarioDao;
 	
+	@Autowired
+	private TestUtil testUtil;
+	
 	@Test
 	public void save() {
-		Usuario usuario = TestUtil.getUsuario("usuariosave");
+		Usuario usuario = testUtil.getUsuario("usuariosave");
 		usuarioDao.save(usuario);
 		assertNotNull(usuario.getId());
 	}

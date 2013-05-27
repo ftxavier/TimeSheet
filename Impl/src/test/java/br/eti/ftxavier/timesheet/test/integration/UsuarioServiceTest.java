@@ -21,10 +21,13 @@ public class UsuarioServiceTest {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private TestUtil testUtil;
 		
 	@Test
 	public void save() {
-		Usuario usuario = TestUtil.getUsuario("usuariosave");
+		Usuario usuario = testUtil.getUsuario("usuariosave");
 		usuarioService.save(usuario);
 		assertNotNull(usuario.getId());
 	}
@@ -38,7 +41,7 @@ public class UsuarioServiceTest {
 	
 	@Test
 	public void findByLogin() {
-		Usuario usuario = TestUtil.getUsuario("ftxavier");
+		Usuario usuario = testUtil.getUsuario("ftxavier");
 		usuarioService.save(usuario);
 		Usuario usuarioSalvo = usuarioService.getUsuarioByLogin("ftxavier");
 		assertNotNull(usuarioSalvo);

@@ -19,8 +19,8 @@
 		</tr>
 		<c:forEach items="${registroList}" var="registro">
 			<tr>
-		    	<td><fmt:formatDate value="${registro.dataHora}" pattern="dd/MM/yyyy"/></td>
-		    	<td><fmt:formatDate value="${registro.dataHora}" pattern="HH:mm:ss"/></td>
+		    	<td><fmt:formatDate value="${registro.dataHora.time}" pattern="dd/MM/yyyy"/></td>
+		    	<td><fmt:formatDate value="${registro.dataHora.time}" pattern="HH:mm:ss"/></td>
 		    	<td>${registro.tipoRegistro}</td>
 		    	<td><a href="${linkTo[RegistroController].edit[registro]}" class="btn btn-primary">Editar</a></td>
 		    </tr>

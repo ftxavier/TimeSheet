@@ -33,4 +33,8 @@ public class RegistroService implements Serializable{
 	public Registro findById(Long id) {
 		return registroDao.findById(id);
 	}
+	
+	public Registro getLastregistro(Usuario usuario) {
+		return registroDao.getLastRegistro(usuario);
+	}
 }

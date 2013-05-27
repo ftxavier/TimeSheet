@@ -37,19 +37,28 @@ public class CalendarUtil {
 		mesSelecionado.set(Calendar.MILLISECOND, 999);
 		return mesSelecionado;
 	}
+	
+	public static Calendar getInstance(String data) {
+		return getInstance(data, null);
+	}
 
 	public static Calendar getInstance(String data, String hora) {
 		if(data==null)
 			return null;
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH24:mi:ss");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
 		try {
-			cal.setTime(format.parse(data + (hora==null?"00:00:00":hora)));
+			cal.setTime(format.parse(data + " " + (hora==null?"00:00:00":hora)));
 		} catch (ParseException e) {
 			log.error("Erro ao converter data: " + data+ " - " + hora, e);
 			return null;
 		}
 		return cal;
+	}
+	
+	public static String toString(Calendar calendar) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		return format.format(calendar.getTime());
 	}
 
 }

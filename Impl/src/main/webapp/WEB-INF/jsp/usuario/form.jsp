@@ -22,4 +22,5 @@
 		</c:forEach>
 	</select>
 </div>
+<hr/>
 <input type="submit" class="btn btn-primary" value="Salvar" />

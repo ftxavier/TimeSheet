@@ -11,8 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.eti.ftxavier.timesheet.model.Role;
 import br.eti.ftxavier.timesheet.model.Usuario;
@@ -33,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			e.printStackTrace();
 		}
 		if (usuario == null) {
-			throw new UsernameNotFoundException("Usu√°rio n√£o encontrado");
+			throw new UsernameNotFoundException("Usu·rio n„o encontrado");
 		} else {
 			List<GrantedAuthority> roleList = new ArrayList<GrantedAuthority>();
 			for(Role role : usuario.getRoles()) {
