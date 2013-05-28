@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import br.eti.ftxavier.timesheet.model.Registro;
 import br.eti.ftxavier.timesheet.model.Usuario;
-import br.eti.ftxavier.timesheet.model.enumerations.TipoRegistro;
 import br.eti.ftxavier.timesheet.service.UsuarioService;
 import br.eti.ftxavier.timesheet.util.CalendarUtil;
 
@@ -25,14 +24,14 @@ public class TestUtil {
 		return usuario;
 	}
 	
-	public Registro getRegistro(TipoRegistro tipoRegistro, Usuario usuario) {
-		return getRegistro(CalendarUtil.getInstance("01/01/2013", "09:00:00"), tipoRegistro, usuario);
+	public Registro getRegistro(Usuario usuario) {
+		return getRegistro(CalendarUtil.getInstance("01/01/2013", "09:00"), CalendarUtil.getInstance("01/01/2013", "12:00"), usuario);
 	}
 	
-	public Registro getRegistro(Calendar dataHora, TipoRegistro tipoRegistro, Usuario usuario) {
+	public Registro getRegistro(Calendar entrada, Calendar saida, Usuario usuario) {
 		Registro registro = new Registro();
-		registro.setDataHora(dataHora);
-		registro.setTipoRegistro(tipoRegistro);
+		registro.setEntrada(entrada);
+		registro.setSaida(saida);
 		if(usuario==null)
 			registro.setUsuario(getPersistedUsuario("ftxavier"));
 		else

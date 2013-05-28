@@ -11,4 +11,7 @@ $(function() {
 	$("#add").click(function() {
 		console.log("ADD");
 	});
+	
+	$(".horaMask").mask("99:99");
+	$(".dataMask").mask("99/99/9999");
 });

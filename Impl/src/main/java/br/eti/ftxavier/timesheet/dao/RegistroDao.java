@@ -18,8 +18,8 @@ public class RegistroDao extends AbstractDao<Registro, Long> {
 	@SuppressWarnings("unchecked")
 	public List<Registro> getRegistrosBetweenDates(Calendar firstDayOfMonth, Calendar lastDayOfMonth, Usuario usuario) {
 		Criteria crit = getCurrentSession().createCriteria(Registro.class);
-		crit.add(Restrictions.ge("dataHora", firstDayOfMonth))
-			.add(Restrictions.le("dataHora", lastDayOfMonth))
+		crit.add(Restrictions.ge("entrada", firstDayOfMonth))
+			.add(Restrictions.le("saida", lastDayOfMonth))
 			.add(Restrictions.eq("usuario", usuario));
 		return (List<Registro>)crit.list();
 	}
@@ -27,7 +27,7 @@ public class RegistroDao extends AbstractDao<Registro, Long> {
 	public Registro getLastRegistro(Usuario usuario) {
 		Criteria crit = getCurrentSession().createCriteria(Registro.class);
 		crit.add(Restrictions.eq("usuario", usuario))
-			.addOrder(Order.desc("dataHora"))
+			.addOrder(Order.desc("entrada"))
 			.setMaxResults(1);
 		return (Registro)crit.uniqueResult();
 	}

@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import sun.util.calendar.CalendarUtils;
-
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
+import br.com.caelum.vraptor.Result;
 import br.eti.ftxavier.timesheet.model.Registro;
-import br.eti.ftxavier.timesheet.model.enumerations.TipoRegistro;
 import br.eti.ftxavier.timesheet.service.RegistroService;
 import br.eti.ftxavier.timesheet.util.CalendarUtil;
 import br.eti.ftxavier.timesheet.util.UserSession;
@@ -24,8 +22,11 @@ public class RegistroController {
 	
 	private UserSession userSession; 
 	
-	public RegistroController(UserSession userSession) {
+	private Result result;
+	
+	public RegistroController(UserSession userSession, Result result) {
 		this.userSession = userSession;
+		this.result = result;
 	}
 	
 	@Path("/")
@@ -43,12 +44,16 @@ public class RegistroController {
 		return registroService.findById(registro.getId());
 	}
 	
-	public void add(String data, String hora) {
-		Calendar dataHora = CalendarUtil.getInstance(data, hora);
+	@Path("/add")
+	public void add(String data, String entrada, String saida) {
+		Calendar horaEntrada = CalendarUtil.getInstance(data, entrada);
+		Calendar horaSaida = CalendarUtil.getInstance(data, saida);
 		Registro registro = new Registro();
-		registro.setDataHora(dataHora);
+		registro.setEntrada(horaEntrada);
+		registro.setSaida(horaSaida);
 		registro.setUsuario(userSession.getUsuario());
-		registro.setTipoRegistro(TipoRegistro.ENTRADA);
+		registroService.save(registro);
+		result.redirectTo(this.getClass()).list();
 	}
 
 }

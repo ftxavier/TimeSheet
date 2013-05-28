@@ -45,10 +45,10 @@ public class CalendarUtil {
 	public static Calendar getInstance(String data, String hora) {
 		if(data==null)
 			return null;
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Calendar cal = Calendar.getInstance();
 		try {
-			cal.setTime(format.parse(data + " " + (hora==null?"00:00:00":hora)));
+			cal.setTime(format.parse(data + " " + (hora==null?"00:00":hora)));
 		} catch (ParseException e) {
 			log.error("Erro ao converter data: " + data+ " - " + hora, e);
 			return null;
@@ -57,7 +57,7 @@ public class CalendarUtil {
 	}
 	
 	public static String toString(Calendar calendar) {
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		return format.format(calendar.getTime());
 	}
 
