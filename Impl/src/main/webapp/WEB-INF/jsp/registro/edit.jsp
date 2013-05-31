@@ -11,10 +11,10 @@
 <body>
 	<div class="container">
 
-		<form action="<c:url value="/usuario/save"/>" method="post">
-			<input type="hidden" name="usuario.id" value="${usuario.id}">
+		<form action="<c:url value="/registro/save"/>" method="post">
 			<fieldset>
-				<legend>Alterar Usu&aacute;rio ${usuario.name}</legend>
+				<legend>Alterar Registro <fmt:formatDate value="${registro.entrada.time}" pattern="dd/MM/yyyy"/></legend>
+				<input type="hidden" name="registro.id" value="${registro.id}"/>
 				<jsp:include page="form.jsp" />
 			</fieldset>
 		</form>

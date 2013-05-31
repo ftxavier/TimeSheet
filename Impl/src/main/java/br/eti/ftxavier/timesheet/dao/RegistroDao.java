@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +19,8 @@ public class RegistroDao extends AbstractDao<Registro, Long> {
 		Criteria crit = getCurrentSession().createCriteria(Registro.class);
 		crit.add(Restrictions.ge("entrada", firstDayOfMonth))
 			.add(Restrictions.le("saida", lastDayOfMonth))
-			.add(Restrictions.eq("usuario", usuario));
+			.add(Restrictions.eq("usuario", usuario))
+			.addOrder(Order.asc("entrada"));
 		return (List<Registro>)crit.list();
 	}
 

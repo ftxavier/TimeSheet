@@ -22,27 +22,17 @@
 			</list>
 		</property>
 	</bean>
-	<context:annotation-config />
 
-	<!-- Scans for application @Components to deploy -->
-	<context:component-scan base-package="br.eti.ftxavier.timesheet.service" />
-	<context:component-scan base-package="br.eti.ftxavier.timesheet.dao" />
-	<context:component-scan base-package="br.eti.ftxavier.timesheet.util" />
-
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
-	<bean id="dataSourceLocal"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSourceLocal" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${dataSource.connection.driver}" />
 		<property name="url" value="${dataSource.connection.url}" />
 		<property name="username" value="${dataSource.connection.username}" />
 		<property name="password" value="${dataSource.connection.password}" />
+		<property name="defaultAutoCommit" value="true"/>
 	</bean>
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<!-- <bean id="sessionFactory" -->
-		<!-- class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> -->
 		<property name="dataSource" ref="${dataSource.name}" />
 		<property name="hibernateProperties">
 			<props>
@@ -57,15 +47,20 @@
 		</property>
 	</bean>
 
-	<!-- <bean id="transactionManager" -->
-	<!-- class="org.springframework.orm.hibernate3.HibernateTransactionManager"> -->
-	<!-- <property name="sessionFactory" ref="sessionFactory" /> -->
-	<!-- </bean> -->
-
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="dataSource" ref="${dataSource.name}"/>
 	</bean>
+
+	<context:annotation-config />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- Scans for application @Components to deploy -->
+	<context:component-scan base-package="br.eti.ftxavier.timesheet.service" />
+	<context:component-scan base-package="br.eti.ftxavier.timesheet.dao" />
+	<context:component-scan base-package="br.eti.ftxavier.timesheet.util" />
 
 	<import resource="security-context.xml" />
 </beans>

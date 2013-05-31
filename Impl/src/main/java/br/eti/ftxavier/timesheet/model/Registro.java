@@ -1,7 +1,6 @@
 package br.eti.ftxavier.timesheet.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -13,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.apache.commons.lang.StringUtils;
+import org.joda.time.Period;
 
 @Entity
 public class Registro implements Serializable {
@@ -30,8 +32,6 @@ public class Registro implements Serializable {
 	private Calendar entrada;
 	@Column(name="data_hora_saida")
 	private Calendar saida;
-	@Column(name="total_horas")
-	private BigDecimal totalHorasTrabalhadas;
 	
 	public Long getId() {
 		return id;
@@ -57,11 +57,17 @@ public class Registro implements Serializable {
 	public void setSaida(Calendar saida) {
 		this.saida = saida;
 	}
-	public BigDecimal getTotalHorasTrabalhadas() {
-		return totalHorasTrabalhadas;
-	}
-	public void setTotalHorasTrabalhadas(BigDecimal totalHorasTrabalhadas) {
-		this.totalHorasTrabalhadas = totalHorasTrabalhadas;
+	
+	public Period getPeriod() {
+		if(getEntrada()!=null && getSaida()!=null)
+			return new Period(getEntrada().getTimeInMillis(), getSaida().getTimeInMillis());
+		else 
+			return new Period();
 	}
 	
+	public String getHorasTrabalhadas() {
+		if(getPeriod()!=null)
+			return StringUtils.leftPad(""+getPeriod().getHours(), 2, "0") + ":" + StringUtils.leftPad(""+getPeriod().getMinutes(), 2, "0"); 
+		else return null;
+	}
 }

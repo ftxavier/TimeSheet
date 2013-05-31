@@ -1,7 +1,6 @@
 package br.eti.ftxavier.timesheet.controller;
 
 import java.util.Calendar;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,6 +8,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.eti.ftxavier.timesheet.model.Registro;
+import br.eti.ftxavier.timesheet.model.RegistroMensal;
 import br.eti.ftxavier.timesheet.service.RegistroService;
 import br.eti.ftxavier.timesheet.util.CalendarUtil;
 import br.eti.ftxavier.timesheet.util.UserSession;
@@ -30,8 +30,9 @@ public class RegistroController {
 	}
 	
 	@Path("/")
-	public List<Registro> list() {
-		return registroService.getRegistroByMonth(Calendar.getInstance(), userSession.getUsuario());
+	public RegistroMensal list() {
+		RegistroMensal registro = registroService.montaRegistroMensal(Calendar.getInstance(), userSession.getUsuario());
+		return registro;
 	}
 	
 	@Path("/new")
@@ -53,6 +54,23 @@ public class RegistroController {
 		registro.setSaida(horaSaida);
 		registro.setUsuario(userSession.getUsuario());
 		registroService.save(registro);
+		result.redirectTo(this.getClass()).list();
+	}
+	
+	@Path("/save")
+	public void save(Registro registro, String data, String entrada, String saida) {
+		Calendar horaEntrada = CalendarUtil.getInstance(data, entrada);
+		Calendar horaSaida = CalendarUtil.getInstance(data, saida);
+		registro = registroService.findById(registro.getId());
+		registro.setEntrada(horaEntrada);
+		registro.setSaida(horaSaida);
+		registroService.save(registro);
+		result.redirectTo(this.getClass()).list();
+	}
+	
+	@Path("/{registro.id}/delete")
+	public void delete(Registro registro) {
+		registroService.remove(registro);
 		result.redirectTo(this.getClass()).list();
 	}
 
