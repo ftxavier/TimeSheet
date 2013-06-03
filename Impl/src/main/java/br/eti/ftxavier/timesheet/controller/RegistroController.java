@@ -54,7 +54,7 @@ public class RegistroController {
 		registro.setSaida(horaSaida);
 		registro.setUsuario(userSession.getUsuario());
 		registroService.save(registro);
-		result.redirectTo(this.getClass()).list();
+		result.redirectTo(RegistroController.class).list();
 	}
 	
 	@Path("/save")
@@ -65,13 +65,13 @@ public class RegistroController {
 		registro.setEntrada(horaEntrada);
 		registro.setSaida(horaSaida);
 		registroService.save(registro);
-		result.redirectTo(this.getClass()).list();
+		result.redirectTo(RegistroController.class).list();
 	}
 	
 	@Path("/{registro.id}/delete")
 	public void delete(Registro registro) {
 		registroService.remove(registro);
-		result.redirectTo(this.getClass()).list();
+		result.redirectTo(RegistroController.class).list();
 	}
 
 }

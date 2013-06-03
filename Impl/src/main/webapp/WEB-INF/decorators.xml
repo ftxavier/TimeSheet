@@ -4,6 +4,7 @@
     <pattern>/*</pattern>
   </decorator>
   <decorator name="login" page="template-login.jsp">
+    <pattern>/login/*</pattern>
     <pattern>/login</pattern>
   </decorator>
 </decorators>
