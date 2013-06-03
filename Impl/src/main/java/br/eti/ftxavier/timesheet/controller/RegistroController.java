@@ -29,12 +29,9 @@ public class RegistroController {
 		this.result = result;
 	}
 	
-	@Path("")
-	public RegistroMensal list(String mes) {
-		Calendar mesCal = Calendar.getInstance();
-		if(mes!=null)
-			 mesCal = CalendarUtil.getMonth(mes);
-		RegistroMensal registro = registroService.montaRegistroMensal(mesCal, userSession.getUsuario());
+	@Path("/")
+	public RegistroMensal list() {
+		RegistroMensal registro = registroService.montaRegistroMensal(Calendar.getInstance(), userSession.getUsuario());
 		return registro;
 	}
 	
@@ -57,7 +54,7 @@ public class RegistroController {
 		registro.setSaida(horaSaida);
 		registro.setUsuario(userSession.getUsuario());
 		registroService.save(registro);
-		result.redirectTo(this.getClass()).list(null);
+		result.redirectTo(RegistroController.class).list();
 	}
 	
 	@Path("/save")
@@ -68,13 +65,13 @@ public class RegistroController {
 		registro.setEntrada(horaEntrada);
 		registro.setSaida(horaSaida);
 		registroService.save(registro);
-		result.redirectTo(this.getClass()).list(null);
+		result.redirectTo(RegistroController.class).list();
 	}
 	
 	@Path("/{registro.id}/delete")
 	public void delete(Registro registro) {
 		registroService.remove(registro);
-		result.redirectTo(this.getClass()).list(null);
+		result.redirectTo(RegistroController.class).list();
 	}
 
 }
