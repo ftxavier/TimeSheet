@@ -15,4 +15,11 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
 				.add(Restrictions.eq("login", login));
 		return (Usuario) criteria.uniqueResult();
 	}
+
+	public Usuario findByEmail(String email) {
+		Criteria criteria = getSessionFactory().getCurrentSession()
+				.createCriteria(Usuario.class)
+				.add(Restrictions.eq("email", email));
+		return (Usuario) criteria.uniqueResult();
+	}
 }

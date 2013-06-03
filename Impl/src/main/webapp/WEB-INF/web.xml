@@ -5,6 +5,11 @@
 	id="WebApp_ID" version="3.0">
 
 	<display-name>TimeSheet</display-name>
+	
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>messages</param-value>
+	</context-param>
 
 	<filter>
 		<filter-name>sessionFilter</filter-name>

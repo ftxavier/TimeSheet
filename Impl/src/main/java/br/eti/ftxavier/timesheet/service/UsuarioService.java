@@ -35,4 +35,12 @@ public class UsuarioService {
 	public Usuario findById(Long identifier) {
 		return usuarioDao.findById(identifier);
 	}
+
+	public Usuario findByEmail(String email) {
+		return usuarioDao.findByEmail(email);
+	}
+
+	public void sendResetPasswordEmail(Usuario usuario) {
+		//TODO implementar o envio de email
+	}
 }

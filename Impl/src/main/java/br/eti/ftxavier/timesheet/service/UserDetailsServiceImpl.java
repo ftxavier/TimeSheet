@@ -43,7 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 					usuario.isAccountNonExpired(),
 					usuario.isCredentialsNonExpired(),
 					usuario.isAccountNonLocked(), roleList);
-			return userDetails;			
+			return userDetails;
 		}
 	}
 

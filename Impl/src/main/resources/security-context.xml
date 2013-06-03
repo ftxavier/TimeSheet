@@ -6,8 +6,8 @@
                     http://www.springframework.org/schema/security 
                     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-	<http use-expressions="true">
-		<intercept-url pattern="/login" access="permitAll" />
+	<http use-expressions="true" auto-config="true">
+		<intercept-url pattern="/login/**" access="permitAll" />
 		<intercept-url pattern="/resources/**" access="permitAll" />
 		<intercept-url pattern="/usuario/**" access="hasRole('ROLE_USER_ADMIN')" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />
@@ -18,7 +18,7 @@
 	<global-method-security pre-post-annotations="enabled" />
 
 	<authentication-manager>
-		<authentication-provider user-service-ref='customUserDetailsService'>
+		<authentication-provider user-service-ref="customUserDetailsService">
 			<password-encoder hash="sha"/>
 		</authentication-provider>
 	</authentication-manager>

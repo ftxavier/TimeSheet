@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
+<title>Esqueci a senha</title>
 
 <style type="text/css">
 body {
@@ -44,24 +44,18 @@ body {
 	<div class="container">
 
 		<form class="form-signin" method="post"
-			action="<c:url value="j_spring_security_check" />">
-			<h2 class="form-signin-heading">Login</h2>
-			<c:if test="${not empty mensagem}">
-				<div class="alert alert-success">
-					<c:out value="${mensagem}"/>
-				</div>
-			</c:if>
-			<c:if test="${error}">
+			action="<c:url value="/login/reset" />">
+			<h2 class="form-signin-heading">Esqueci a senha</h2>
+			<c:if test="${not empty errors}">
 				<div class="alert alert-error">
-					<c:out value="${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}"/>
+					<c:forEach var="error" items="${errors}">
+					    ${error.category} - ${error.message}<br />
+					</c:forEach>
 				</div>
 			</c:if>
-			<input type="text" name="j_username" placeholder="Usuário"
-				class="input-block-level" /> <input type="password"
-				name="j_password" placeholder="Senha" class="input-block-level">
-			<a href="<c:url value="/login/esqueci" />" class="btn btn-link">Esqueci a senha</a>
+			<input type="text" name="email" placeholder="E-Mail" class="input-block-level" />
 			<hr/>
-			<button type="submit" class="btn btn-large btn-primary">Login</button>
+			<button type="submit" class="btn btn-large btn-primary">Enviar</button>
 		</form>
 
 	</div>
