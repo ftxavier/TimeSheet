@@ -7,6 +7,9 @@ import org.apache.commons.lang.StringUtils;
 import org.joda.time.Hours;
 import org.joda.time.Minutes;
 import org.joda.time.MutablePeriod;
+import org.joda.time.Period;
+
+import br.eti.ftxavier.timesheet.util.CalendarUtil;
 
 public class RegistroMensal {
 
@@ -28,6 +31,21 @@ public class RegistroMensal {
 	public void setMesReferencia(Calendar mesReferencia) {
 		this.mesReferencia = mesReferencia;
 	}
+	
+	public MutablePeriod getHorasUteis(){
+		return CalendarUtil.getHorasUteisMes(getMesReferencia());
+	}
+	
+	public String getHorasUteisAsString() {
+		MutablePeriod horasUteis = getHorasUteis();
+		if(horasUteis==null) {
+			return "00:00";
+		} else {
+			return StringUtils.leftPad(""+Hours.standardHoursIn(horasUteis).getHours(), 2, "0") 
+					+ ":" 
+					+ StringUtils.leftPad(""+(Minutes.standardMinutesIn(horasUteis).getMinutes()%60), 2, "0");
+		}
+	}
 
 	public MutablePeriod getTotalHorasTrabalhadas() {
 		MutablePeriod mutablePeriod = new MutablePeriod();
@@ -36,11 +54,31 @@ public class RegistroMensal {
 		}
 		return mutablePeriod;
 	}
+	
+	public Period getSaldoHoras() {
+		Period total = new Period(getTotalHorasTrabalhadas());
+		Period saldo = total.minus(getHorasUteis());
+		return saldo;
+	}
+	
+	public String getSaldoHorasAsString() {
+		Period saldo = getSaldoHoras();
+		if(saldo==null) {
+			return "00:00";
+		} else {
+			return StringUtils.leftPad(""+Hours.standardHoursIn(saldo).getHours(), 2, "0") 
+					+ ":" 
+					+ StringUtils.leftPad(""+(Minutes.standardMinutesIn(saldo).getMinutes()%60), 2, "0");
+		}
+	}
 
 	@Override
 	public String toString() {
-		if(getTotalHorasTrabalhadas()!=null) {
-			return StringUtils.leftPad(""+Hours.standardHoursIn(getTotalHorasTrabalhadas()).getHours(), 2, "0") + ":" + StringUtils.leftPad(""+(Minutes.standardMinutesIn(getTotalHorasTrabalhadas()).getMinutes()%60), 2, "0");
+		MutablePeriod total = getTotalHorasTrabalhadas();
+		if(total!=null) {
+			return StringUtils.leftPad(""+Hours.standardHoursIn(total).getHours(), 2, "0") 
+					+ ":" 
+					+ StringUtils.leftPad(""+(Minutes.standardMinutesIn(total).getMinutes()%60), 2, "0");
 		} else {
 			return "00:00";
 		}

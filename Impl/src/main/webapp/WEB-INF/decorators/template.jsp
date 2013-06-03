@@ -32,8 +32,8 @@
 	          	<sec:authorize access="isAuthenticated()">
 		            <ul class="nav">
 		              <li class="active"><a href="<c:url value="/" />">Home</a></li>
-		              <li><a href="<c:url value="/usuario/" />">Usuários</a></li>
-		              <li><a href="<c:url value="/registro/" />">Registros</a></li>
+		              <li><a href="${linkTo[UsuarioController].list}">Usuários</a></li>
+		              <li><a href="${linkTo[RegistroController].list}">Registros</a></li>
 		              <li><a href="<c:url value="/logout" />">Logout</a></li>
 		            </ul>
 	            </sec:authorize>

@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.apache.log4j.Logger;
+import org.joda.time.MutablePeriod;
+import org.joda.time.Period;
 
 public class CalendarUtil {
 	
@@ -59,6 +61,35 @@ public class CalendarUtil {
 	public static String toString(Calendar calendar) {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		return format.format(calendar.getTime());
+	}
+
+	public static Calendar getMonth(String mes) {
+		if(mes==null)
+			return null;
+		SimpleDateFormat format = new SimpleDateFormat("MM/yyyy");
+		Calendar cal = Calendar.getInstance();
+		try {
+			cal.setTime(format.parse(mes));
+		} catch (ParseException e) {
+			log.error("Erro ao converter mes: " + mes, e);
+			return null;
+		}
+		return cal;
+	}
+	
+	public static MutablePeriod getHorasUteisMes(Calendar mes) {
+		MutablePeriod period = new MutablePeriod();
+		if(mes==null)
+			return period;
+		mes = getFirstDayOfMonth(mes);
+		int lastDay = mes.getActualMaximum(Calendar.DAY_OF_MONTH);
+		do {
+			if(mes.get(Calendar.DAY_OF_WEEK)!=Calendar.SATURDAY && mes.get(Calendar.DAY_OF_WEEK)!=Calendar.SUNDAY) {
+				period.add(Period.hours(8));
+			}
+			mes.add(Calendar.DAY_OF_MONTH, 1);
+		} while (mes.get(Calendar.DAY_OF_MONTH)!=lastDay);
+		return period;
 	}
 
 }

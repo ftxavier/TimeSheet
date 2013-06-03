@@ -31,7 +31,7 @@ public class UsuarioController {
 		this.result = result;
 	}
 
-	@Get @Path("/")
+	@Get @Path("")
 	public List<Usuario> list() {
 		return usuarioService.list();
 	}

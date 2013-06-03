@@ -14,6 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.apache.commons.lang.StringUtils;
+import org.joda.time.Hours;
+import org.joda.time.Minutes;
 import org.joda.time.Period;
 
 @Entity
@@ -30,6 +32,7 @@ public class Registro implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="data_hora_entrada")
 	private Calendar entrada;
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="data_hora_saida")
 	private Calendar saida;
 	
@@ -61,13 +64,13 @@ public class Registro implements Serializable {
 	public Period getPeriod() {
 		if(getEntrada()!=null && getSaida()!=null)
 			return new Period(getEntrada().getTimeInMillis(), getSaida().getTimeInMillis());
-		else 
+		else
 			return new Period();
 	}
 	
 	public String getHorasTrabalhadas() {
 		if(getPeriod()!=null)
-			return StringUtils.leftPad(""+getPeriod().getHours(), 2, "0") + ":" + StringUtils.leftPad(""+getPeriod().getMinutes(), 2, "0"); 
+			return StringUtils.leftPad(""+Hours.standardHoursIn(getPeriod()).getHours(), 2, "0") + ":" + StringUtils.leftPad(""+(Minutes.standardMinutesIn(getPeriod()).getMinutes()%60), 2, "0"); 
 		else return null;
 	}
 }

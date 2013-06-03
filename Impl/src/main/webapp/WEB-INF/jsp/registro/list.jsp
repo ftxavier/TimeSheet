@@ -10,6 +10,7 @@
 </head>
 <body>
 <div class="container">
+	<h2>Relatório de Horas do Mês <fmt:formatDate value="${registroMensal.mesReferencia.time}" pattern="MM/yyyy"/></h2>
 	<c:set value="${registroMensal.registros}" var="registros"/>
 	<table class="table table-bordered">
 		<tr>
@@ -32,13 +33,44 @@
 		    </tr>
 		</c:forEach>
 			<tr>
-		    	<td>&nbsp;</td>
+		    	<th></th>
 		    	<td></td>
 		    	<th>Total do Mês <fmt:formatDate value="${registroMensal.mesReferencia.time}" pattern="MM/yyyy"/>:</th>
 		    	<td>${registroMensal}</td>
-		    	<td></td>
+		    	<td>
+				</td>
 		    </tr>
-		<tfoot><tr><td colspan="5"><a href="${linkTo[RegistroController].novo}" class="btn btn-primary">Novo</a></td></tr></tfoot>
+			<tr>
+		    	<th></th>
+		    	<td></td>
+		    	<th>Horas &Uacute;teis no M&ecirc;s <fmt:formatDate value="${registroMensal.mesReferencia.time}" pattern="MM/yyyy"/>:</th>
+		    	<td>${registroMensal.horasUteisAsString}</td>
+		    	<td>
+				</td>
+		    </tr>
+			<tr>
+		    	<th></th>
+		    	<td></td>
+		    	<th>Saldo de Horas no M&ecirc;s <fmt:formatDate value="${registroMensal.mesReferencia.time}" pattern="MM/yyyy"/>:</th>
+		    	<td>${registroMensal.saldoHorasAsString}</td>
+		    	<td>
+				</td>
+		    </tr>
+		<tfoot>
+			<tr>
+				<td colspan="4">
+					<a href="${linkTo[RegistroController].novo}" class="btn btn-primary">Novo</a>
+				</td>
+				<td width="250">
+		    		<div class="input-append">
+		    			<form action="<c:url value="/registro"/>" method="post">
+							<input class="span2 monthMask" id="mes" name="mes" type="text" placeholder="Meses Anteriores">
+							<button class="btn" type="button"><i class="icon-search"></i></button>
+		    			</form>
+					</div>
+				</td>
+			</tr>
+			</tfoot>
 	</table>
 </div>
 </body>
