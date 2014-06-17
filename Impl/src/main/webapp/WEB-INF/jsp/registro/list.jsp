@@ -44,7 +44,7 @@
 		    	<th></th>
 		    	<td></td>
 		    	<th>Horas &Uacute;teis no M&ecirc;s <fmt:formatDate value="${registroMensal.mesReferencia.time}" pattern="MM/yyyy"/>:</th>
-		    	<td>${registroMensal.horasUteisAsString}</td>
+		    	<td>${registroMensal.horasUteis}</td>
 		    	<td>
 				</td>
 		    </tr>
@@ -52,7 +52,7 @@
 		    	<th></th>
 		    	<td></td>
 		    	<th>Saldo de Horas no M&ecirc;s <fmt:formatDate value="${registroMensal.mesReferencia.time}" pattern="MM/yyyy"/>:</th>
-		    	<td>${registroMensal.saldoHorasAsString}</td>
+		    	<td>${registroMensal.saldoHoras}</td>
 		    	<td>
 				</td>
 		    </tr>

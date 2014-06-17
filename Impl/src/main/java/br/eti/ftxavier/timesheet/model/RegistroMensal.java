@@ -3,12 +3,6 @@ package br.eti.ftxavier.timesheet.model;
 import java.util.Calendar;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-import org.joda.time.Hours;
-import org.joda.time.Minutes;
-import org.joda.time.MutablePeriod;
-import org.joda.time.Period;
-
 import br.eti.ftxavier.timesheet.util.CalendarUtil;
 
 public class RegistroMensal {
@@ -32,55 +26,27 @@ public class RegistroMensal {
 		this.mesReferencia = mesReferencia;
 	}
 	
-	public MutablePeriod getHorasUteis(){
-		return CalendarUtil.getHorasUteisMes(getMesReferencia());
+	public Period getHorasUteis(){
+		Period period = new Period().withHours(CalendarUtil.getHorasUteisMes(getMesReferencia()));
+		return period;
 	}
 	
-	public String getHorasUteisAsString() {
-		MutablePeriod horasUteis = getHorasUteis();
-		if(horasUteis==null) {
-			return "00:00";
-		} else {
-			return StringUtils.leftPad(""+Hours.standardHoursIn(horasUteis).getHours(), 2, "0") 
-					+ ":" 
-					+ StringUtils.leftPad(""+(Minutes.standardMinutesIn(horasUteis).getMinutes()%60), 2, "0");
-		}
-	}
-
-	public MutablePeriod getTotalHorasTrabalhadas() {
-		MutablePeriod mutablePeriod = new MutablePeriod();
+	public Period getTotalHorasTrabalhadas() {
+		Period period = new Period();
 		for (Registro registro : this.getRegistros()) {
-			mutablePeriod.add(registro.getPeriod());
+			period.sum(registro.getPeriod());
 		}
-		return mutablePeriod;
+		return period;
 	}
 	
 	public Period getSaldoHoras() {
-		Period total = new Period(getTotalHorasTrabalhadas());
+		Period total = getTotalHorasTrabalhadas();
 		Period saldo = total.minus(getHorasUteis());
 		return saldo;
 	}
 	
-	public String getSaldoHorasAsString() {
-		Period saldo = getSaldoHoras();
-		if(saldo==null) {
-			return "00:00";
-		} else {
-			return StringUtils.leftPad(""+Hours.standardHoursIn(saldo).getHours(), 2, "0") 
-					+ ":" 
-					+ StringUtils.leftPad(""+(Minutes.standardMinutesIn(saldo).getMinutes()%60), 2, "0");
-		}
-	}
-
 	@Override
 	public String toString() {
-		MutablePeriod total = getTotalHorasTrabalhadas();
-		if(total!=null) {
-			return StringUtils.leftPad(""+Hours.standardHoursIn(total).getHours(), 2, "0") 
-					+ ":" 
-					+ StringUtils.leftPad(""+(Minutes.standardMinutesIn(total).getMinutes()%60), 2, "0");
-		} else {
-			return "00:00";
-		}
+		return getTotalHorasTrabalhadas().toString();
 	}
 }

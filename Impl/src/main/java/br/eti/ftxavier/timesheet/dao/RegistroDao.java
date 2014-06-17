@@ -19,7 +19,7 @@ public class RegistroDao extends AbstractDao<Registro, Long> {
 		Criteria crit = getCurrentSession().createCriteria(Registro.class);
 		crit.add(Restrictions.ge("entrada", firstDayOfMonth))
 			.add(Restrictions.le("saida", lastDayOfMonth))
-			.add(Restrictions.eq("usuario", usuario))
+			.add(Restrictions.eq("usuario.id", usuario.getId()))
 			.addOrder(Order.asc("entrada"));
 		return (List<Registro>)crit.list();
 	}

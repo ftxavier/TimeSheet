@@ -2,6 +2,7 @@ package br.eti.ftxavier.timesheet.controller;
 
 import java.util.ResourceBundle;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.caelum.vraptor.Get;
@@ -18,6 +19,8 @@ import br.eti.ftxavier.timesheet.service.UsuarioService;
 @Path("/login")
 public class LoginController {
 	
+	private static final Logger log = Logger.getLogger(LoginController.class);
+	
 	@Autowired
 	private UsuarioService usuarioService;
 	
@@ -31,7 +34,7 @@ public class LoginController {
 
 	@Get @Path("")
 	public void login() {
-		
+		log.info("Acessando página de login.");
 	}
 	
 	@Get @Path("/error")
@@ -39,7 +42,7 @@ public class LoginController {
 		result.include("error", Boolean.TRUE);
 		result.forwardTo(LoginController.class).login();
 	}
-	
+		
 	@Get @Path("/esqueci")
 	public void esqueci() {
 		

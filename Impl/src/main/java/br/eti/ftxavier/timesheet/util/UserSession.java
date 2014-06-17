@@ -24,8 +24,7 @@ public class UserSession implements Serializable {
 
 	public Usuario getUsuario() {
 		if (usuario == null) {
-			User user = (User) SecurityContextHolder.getContext()
-					.getAuthentication().getPrincipal();
+			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			if (user != null)
 				usuario = usuarioService.getUsuarioByLogin(user.getUsername());
 		}

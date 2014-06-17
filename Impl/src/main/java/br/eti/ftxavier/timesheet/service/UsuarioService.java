@@ -13,7 +13,6 @@ import br.eti.ftxavier.timesheet.model.Usuario;
 @Service
 public class UsuarioService {
 	
-
 	@Autowired
 	private UsuarioDao usuarioDao;
 	
@@ -41,6 +40,6 @@ public class UsuarioService {
 	}
 
 	public void sendResetPasswordEmail(Usuario usuario) {
-		//TODO implementar o envio de email
+		//XXX implementar o envio de email
 	}
 }

@@ -13,11 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.apache.commons.lang.StringUtils;
-import org.joda.time.Hours;
-import org.joda.time.Minutes;
-import org.joda.time.Period;
-
 @Entity
 public class Registro implements Serializable {
 	
@@ -26,12 +21,15 @@ public class Registro implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@ManyToOne(fetch=FetchType.LAZY)
+	
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="usuario_id",nullable=false)
 	private Usuario usuario;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="data_hora_entrada")
 	private Calendar entrada;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="data_hora_saida")
 	private Calendar saida;
@@ -63,14 +61,13 @@ public class Registro implements Serializable {
 	
 	public Period getPeriod() {
 		if(getEntrada()!=null && getSaida()!=null)
-			return new Period(getEntrada().getTimeInMillis(), getSaida().getTimeInMillis());
-		else
-			return new Period();
+			return new Period().between(getEntrada(), getSaida());
+		return null;
 	}
 	
 	public String getHorasTrabalhadas() {
 		if(getPeriod()!=null)
-			return StringUtils.leftPad(""+Hours.standardHoursIn(getPeriod()).getHours(), 2, "0") + ":" + StringUtils.leftPad(""+(Minutes.standardMinutesIn(getPeriod()).getMinutes()%60), 2, "0"); 
-		else return null;
+			return getPeriod().toString(); 
+		return null;
 	}
 }

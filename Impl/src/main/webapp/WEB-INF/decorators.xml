@@ -6,5 +6,6 @@
   <decorator name="login" page="template-login.jsp">
     <pattern>/login/*</pattern>
     <pattern>/login</pattern>
+    <pattern>/404</pattern>
   </decorator>
 </decorators>
