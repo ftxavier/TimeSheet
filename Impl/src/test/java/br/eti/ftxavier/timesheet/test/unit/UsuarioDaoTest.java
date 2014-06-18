@@ -18,7 +18,7 @@ import br.eti.ftxavier.timesheet.test.util.TestUtil;
 
 @Transactional
 @RunWith( SpringJUnit4ClassRunner.class )
-@ContextConfiguration( locations = { "classpath*:beans/application-context-test.xml", "classpath*:beans/data-context-test.xml" } )
+@ContextConfiguration( locations = { "classpath*:applicationContext-test.xml" } )
 public class UsuarioDaoTest {
 	
 	@Autowired
@@ -29,7 +29,7 @@ public class UsuarioDaoTest {
 	
 	@Test
 	public void save() {
-		Usuario usuario = testUtil.getUsuario("usuariosave");
+		Usuario usuario = testUtil.getUsuario("fernando");
 		usuarioDao.save(usuario);
 		assertNotNull(usuario.getId());
 	}
