@@ -4,7 +4,7 @@
 <label>E-Mail</label>
 <input type="text" name="usuario.email" value="${usuario.email}" class="input-xxlarge" placeholder="E-Mail"/>
 <label>Nome</label>
-<input type="text" name="usuario.nome" value="${usuario.name}"  class="input-xxlarge" placeholder="Nome"/>
+<input type="text" name="usuario.name" value="${usuario.name}"  class="input-xxlarge" placeholder="Nome"/>
 <label>Roles</label>
 <div class="controls controls-row">
 	<select name="roles" multiple="multiple" size="8">
